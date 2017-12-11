@@ -8,7 +8,7 @@ module.exports = {
   output: {
     path: tmppath,
     publicPath: '/',
-    filename: './dat-medium.js',
+    filename: './dat-syllabus.js',
   },
   plugins: [],
 }

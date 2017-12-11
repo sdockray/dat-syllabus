@@ -8,9 +8,8 @@ export default ({ fork }) => {
   const update = key => value => { setup.key = value }
   const onSubmit = e => {
     e.preventDefault()
-
-    const [ , image, author, title, description ] = Array.from(e.target).map(a => a.value)
-    const [ , ext, data ] = image.match(/data:image\/(\w+);base64,(.*)$/)
+    const [ , image, author, title, description ] = Array.from(e.target.elements).map(a => a.value)
+    const [ , ext, data ] = (image) ? image.match(/data:image\/(\w+);base64,(.*)$/) : [ , null, null ]
     const photo = { ext, data }
     fork({ author, description, photo, title })
   }
@@ -18,7 +17,7 @@ export default ({ fork }) => {
   return (
     <section id='fork'>
       <form onsubmit={onSubmit}>
-        <h1>Fork new dat-medium</h1>
+        <h1>Fork this Syllabus</h1>
         <PhotoPicker onload={update('image')} />
         <input type='text' name='author' placeholder='Author' />
         <input type='text' name='title' placeholder='Title' />

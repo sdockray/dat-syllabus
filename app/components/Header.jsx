@@ -1,15 +1,39 @@
 import { h } from 'hyperapp'
-import Logo from 'components/Logo'
 
-export default ({ info, title }) =>
+const Author = ({ author, link }) => {
+  if (author && link) {
+    return (
+      <span class='author'>
+        <a href={link} target='_blank'>{author}</a>
+      </span>
+    )
+  } else if (author) {
+    return <span class='author'>{author}</span>
+  } else return null
+}
+
+const Date = ({ date }) =>
+  date
+    ? <span class='date'>{date.format('MMMM Do, Y')}</span>
+    : null
+
+const Forks = ({ forks }) =>
+  forks
+    ? forks.map(f => (
+      <li><a href={f.url}>{f.title}</a></li>
+    ))
+    : null
+
+export default ({ content, info, title }) =>
   <header>
     <div class='container wide'>
-      <a href='#'>
-        <div class='brand'>
-          <Logo size='40px' />
+      <a href='#title'>
           {title}
-        </div>
       </a>
-      { (info && !info.isOwner) && <a href='#fork' class='button small'>Fork</a> }
+      <span class='meta'>{Author(info)} (last updated: {Date(content)})</span>
+      { (info) && <a href='#fork' class='button small'>Fork</a> }
     </div>
+    <ul class='container wide forks'>
+      {Forks(info)}
+    </ul>
   </header>

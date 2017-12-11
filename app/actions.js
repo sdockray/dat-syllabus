@@ -1,13 +1,13 @@
-import medium from 'lib/medium'
+import syllabus from 'lib/syllabus'
 
 const init = (url = window.location.origin) => state => async actions => {
   actions.update({ isLoading: true })
   if (state.isBeaker) {
-    await medium.init(url)
-    await medium.loadStyle()
-    const articles = await medium.preloadArticles()
-    const { title, ...info } = await medium.loadInfo()
-    actions.update({ articles, info, title })
+    await syllabus.init(url)
+    await syllabus.loadStyle()
+    const content = await syllabus.preloadContent()
+    const { title, ...info } = await syllabus.loadInfo()
+    actions.update({ content, info, title })
   }
   actions.update({ isLoading: false })
 
@@ -22,7 +22,7 @@ const navigateByHash = page => {
 }
 
 const fork = params => state => async actions => {
-  const url = await medium.fork(params)
+  const url = await syllabus.fork(params)
   window.location = url
 }
 

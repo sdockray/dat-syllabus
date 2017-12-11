@@ -1,6 +1,13 @@
 section#fork {
   display: flex;
   justify-content: center;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 8px,
+    #eeee33 1px,
+    #eeee33 9px
+  );
 }
 section#fork form {
   align-items: center;
@@ -10,10 +17,6 @@ section#fork form {
 section#fork form > * {
   margin: 0 0 1em;
 }
-section#fork form input[type='text'] {
-  border: none;
-  outline: none;
-}
 section#fork #displayPicture {
   display: flex;
   position: relative;
@@ -21,7 +24,7 @@ section#fork #displayPicture {
   align-items: center;
   height: 200px;
   width: 200px;
-  border-radius: 50%;
+  /* border-radius: 50%; */
   overflow: hidden;
   background: #111;
   cursor: pointer;

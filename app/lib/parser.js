@@ -6,15 +6,6 @@ export const md = markdownIt({
   linkify: true,
 })
 
-const WORDS_PER_MINUTE = 130
-
-const calculateDuration = text => {
-  const words = text.match(/\w+/g).length
-  return moment
-    .duration(words / WORDS_PER_MINUTE, 'minutes')
-    .asMinutes()
-}
-
 const parseHeaders = header =>
   header
     .split('\n')
@@ -33,7 +24,6 @@ export const parse = article => {
     text = text.join('\n\n')
   } else text = article
   const body = md.render(text)
-  const duration = calculateDuration(text)
 
-  return { ...fields, body, date, duration }
+  return { ...fields, body, date }
 }

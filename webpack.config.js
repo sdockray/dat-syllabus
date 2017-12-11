@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: './dat-medium.js',
+    filename: './dat-syllabus.js',
   },
   module: {
     rules: [
